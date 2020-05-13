@@ -13,4 +13,4 @@ if (module.hot) {
   });
 }
 
-render(App);
+ReactDOM.hydrate(<App />, document.getElementById("root"));

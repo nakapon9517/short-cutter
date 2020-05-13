@@ -18,8 +18,6 @@ app.use(HMR(compiler));
 
 //GETリクエストでルートにアクセスが会った時の動作
 app.get("/", (req, res) => {
-  // const index = fs.readFileSync("./public/index.html", "utf-8");
-
   let index = fs.readFileSync("./public/index.html", "utf-8");
   const appRendered = renderToString(<App />);
   index = index.replace("<%= preloadedApplication %>", appRendered);
