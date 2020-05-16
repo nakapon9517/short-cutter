@@ -4,28 +4,20 @@ import TextField from "@material-ui/core/TextField";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 
-const classes = makeStyles((theme, Theme) =>
-  createStyles({
-    root: {
-      flexGrow: 1,
-      color: "#388e3c",
-      backgroundColor: "#81c784",
-    },
-  })
-);
+const left_component = { height: "100vh", padding: "0px 10px" };
 
 const LeftComponent = () => (
-  <Container>
+  <div style={left_component}>
     <form noValidate autoComplete="off">
       <TextField id="standard-basic" label="Standard" />
     </form>
-    <form className={classes.root} noValidate autoComplete="off">
+    <form noValidate autoComplete="off">
       <TextField id="standard-basic" label="Standard" />
     </form>
-    <form className={classes.root} noValidate autoComplete="off">
+    <form noValidate autoComplete="off">
       <TextField id="standard-basic" label="Standard" />
     </form>
-  </Container>
+  </div>
 );
 
 export default LeftComponent;

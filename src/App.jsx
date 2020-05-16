@@ -12,44 +12,52 @@ import MenuIcon from "@material-ui/icons/Menu";
 import Grid from "@material-ui/core/Grid";
 import SplitPane, { Pane } from "react-split-pane";
 
-const classes = makeStyles((theme, Theme) =>
-  createStyles({
-    root: {
-      flexGrow: 1,
-      color: "#388e3c",
-      backgroundColor: "#81c784",
-    },
-    menuButton: {
-      marginRight: theme.spacing(2),
-    },
-    title: {
-      flexGrow: 1,
-      textAlign: "center",
-    },
-  })
-);
+const menuButton = {
+  // marginRight: theme.spacing(2),
+};
+const root = {
+  flexGrow: 1,
+  color: "#388e3c",
+  maxWidth: "1500px",
+};
+
+const title = {
+  flexGrow: 1,
+  textAlign: "left",
+};
+
+const component = {
+  border: "3px solid gray",
+};
+const main = {
+  padding: "10px 32px 15px",
+};
 
 const App = () => (
-  <Container>
+  <Container style={root}>
     <AppBar position="static">
       <Toolbar>
         <IconButton
           edge="start"
-          className={classes.menuButton}
+          style={menuButton}
           color="inherit"
           aria-label="menu"
         >
           <MenuIcon />
         </IconButton>
-        <Typography variant="h6" className={classes.title}>
+        <Typography variant="h7" style={title}>
           ShortCutter
         </Typography>
         {/* <Button color="inherit">Login</Button> */}
       </Toolbar>
     </AppBar>
-    <SplitPane split="vertical" minSize={500} defaultSize={100}>
-      <LeftComponent className={classes.component} />
-      <RightComponent className={classes.component} />
+    <SplitPane split="vertical" minSize={300} defaultSize={300} style={main}>
+      <div style={component}>
+        <LeftComponent />
+      </div>
+      <div style={component}>
+        <RightComponent />
+      </div>
     </SplitPane>
   </Container>
 );
