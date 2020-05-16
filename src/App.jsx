@@ -12,13 +12,64 @@ import MenuIcon from "@material-ui/icons/Menu";
 import Grid from "@material-ui/core/Grid";
 import SplitPane, { Pane } from "react-split-pane";
 
+export default class App extends React.Component {
+  constructor() {
+    super();
+    this.toggleBtmHeight = this.toggleBtmHeight.bind(this);
+  }
+  componentWillMount() {
+    this.setState({
+      btmHeight: "",
+    });
+  }
+  toggleBtmHeight(newSize) {
+    this.setState({ btmHeight: newSize + "px" });
+  }
+
+  render() {
+    return (
+      <Container style={root}>
+        <AppBar position="static">
+          <Toolbar>
+            <IconButton
+              edge="start"
+              style={menuButton}
+              color="inherit"
+              aria-label="menu"
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" style={title}>
+              ShortCutter
+            </Typography>
+            {/* <Button color="inherit">Login</Button> */}
+          </Toolbar>
+        </AppBar>
+        <SplitPane
+          split="vertical"
+          minSize={50}
+          defaultSize="500px"
+          style={main}
+          onChange={(size) => this.toggleBtmHeight(size)}
+        >
+          <Pane style={component}>
+            <LeftComponent />
+          </Pane>
+          <Pane style={component}>
+            <RightComponent />
+          </Pane>
+        </SplitPane>
+      </Container>
+    );
+  }
+}
+
 const menuButton = {
   // marginRight: theme.spacing(2),
 };
 const root = {
   flexGrow: 1,
   color: "#388e3c",
-  maxWidth: "1500px",
 };
 
 const title = {
@@ -31,35 +82,5 @@ const component = {
 };
 const main = {
   padding: "10px 32px 15px",
+  // width: "calc((100% - 32px) / 2)",
 };
-
-const App = () => (
-  <Container style={root}>
-    <AppBar position="static">
-      <Toolbar>
-        <IconButton
-          edge="start"
-          style={menuButton}
-          color="inherit"
-          aria-label="menu"
-        >
-          <MenuIcon />
-        </IconButton>
-        <Typography variant="h7" style={title}>
-          ShortCutter
-        </Typography>
-        {/* <Button color="inherit">Login</Button> */}
-      </Toolbar>
-    </AppBar>
-    <SplitPane split="vertical" minSize={300} defaultSize={300} style={main}>
-      <div style={component}>
-        <LeftComponent />
-      </div>
-      <div style={component}>
-        <RightComponent />
-      </div>
-    </SplitPane>
-  </Container>
-);
-
-export default App;
