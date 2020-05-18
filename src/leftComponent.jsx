@@ -3,6 +3,7 @@ import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import Button from "@material-ui/core/Button";
 
 const TextLine = ({ index, name, url }) => (
   <div style={line_style}>
@@ -33,7 +34,7 @@ export default class LeftComponent extends React.Component {
     super(props);
     this.state = {
       data: [
-        { key: "1", name: "aaaaaaa", url: "http://a" },
+        { key: "1", name: "ddddddd", url: "http://a" },
         { key: "2", name: "bbbbbbb", url: "http://b" },
         { key: "3", name: "", url: "" },
       ],
@@ -41,17 +42,28 @@ export default class LeftComponent extends React.Component {
   }
   render() {
     return (
-      <div style={left_component}>
-        {this.state.data.map((item) => {
-          return (
-            <TextLine
-              key={item.key}
-              index={item.key}
-              name={item.name}
-              url={item.url}
-            />
-          );
-        })}
+      <div>
+        <Button
+          size="small"
+          variant="contained"
+          color="secondary"
+          onClick={() => this.resetLayout()}
+          style={{ marginBottom: "3px" }}
+        >
+          Reset
+        </Button>
+        <div style={left_component}>
+          {this.state.data.map((item) => {
+            return (
+              <TextLine
+                key={item.key}
+                index={item.key}
+                name={item.name}
+                url={item.url}
+              />
+            );
+          })}
+        </div>
       </div>
     );
   }
@@ -60,6 +72,7 @@ export default class LeftComponent extends React.Component {
 const left_component = {
   height: "calc(100vh - 10px)",
   padding: "10px 0px 0px 10px",
+  border: "3px solid gray",
 };
 
 const line_style = {

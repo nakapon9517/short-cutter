@@ -48,12 +48,12 @@ export default class App extends React.Component {
           style={main}
           onChange={(size) => this.toggleBtmHeight(size)}
         >
-          <Pane style={component}>
+          <Paper>
             <LeftComponent />
-          </Pane>
-          <Pane style={component}>
+          </Paper>
+          <Paper>
             <RightComponent />
-          </Pane>
+          </Paper>
         </SplitPane>
       </Container>
     );
@@ -73,9 +73,6 @@ const title = {
   textAlign: "left",
 };
 
-const component = {
-  border: "3px solid gray",
-};
 const main = {
   padding: "10px 32px 15px",
   // width: "calc((100% - 32px) / 2)",

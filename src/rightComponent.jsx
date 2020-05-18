@@ -8,15 +8,12 @@ import Button from "@material-ui/core/Button";
 // import GridLayout from "react-grid-layout";
 // import { Responsive as ResponsiveGridLayout } from "react-grid-layout";
 // import styles from "../public/css/style.sass";
-
-import { WidthProvider, Responsive } from "react-grid-layout";
+import { Responsive, WidthProvider } from "react-grid-layout";
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
+
 const originalLayouts = getFromLS("layouts") || {};
 
-/**
- * This layout demonstrates how to sync multiple responsive layouts to localstorage.
- */
 export default class RightComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -27,42 +24,32 @@ export default class RightComponent extends React.Component {
         {
           index: "1",
           text: "aaaaa",
-          w: 2,
-          h: 3,
+          w: 1,
+          h: 1,
           x: 0,
           y: 0,
-          minW: 2,
-          minH: 3,
+          minW: 1,
+          minH: 1,
         },
         {
           index: "2",
           text: "bbbbb",
-          w: 2,
-          h: 3,
-          x: 2,
+          w: 1,
+          h: 2,
+          x: 1,
           y: 0,
-          minW: 2,
-          minH: 3,
+          minW: 1,
+          minH: 1,
         },
         {
           index: "3",
           text: "ccccc",
-          w: 2,
-          h: 3,
-          x: 4,
+          w: 1,
+          h: 1,
+          x: 2,
           y: 0,
-          minW: 2,
-          minH: 3,
-        },
-        {
-          index: "4",
-          text: "ddddd",
-          w: 2,
-          h: 3,
-          x: 6,
-          y: 0,
-          minW: 2,
-          minH: 3,
+          minW: 1,
+          minH: 1,
         },
       ],
     };
@@ -79,45 +66,51 @@ export default class RightComponent extends React.Component {
 
   render() {
     return (
-      <div style={right_component}>
+      <div>
         <Button
           size="small"
           variant="contained"
           color="secondary"
           onClick={() => this.resetLayout()}
+          style={{ marginBottom: "3px" }}
         >
           Reset
         </Button>
-        <ResponsiveReactGridLayout
-          breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
-          className="layout"
-          cols={{ lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }}
-          rowHeight={50}
-          layouts={this.state.layouts}
-          onLayoutChange={(layout, layouts) =>
-            this.onLayoutChange(layout, layouts)
-          }
-          style={grid}
-        >
-          {this.state.data.map((item) => {
-            return (
-              <div
-                key={item.index}
-                data-grid={{
-                  w: item.w,
-                  h: item.h,
-                  x: item.x,
-                  y: item.y,
-                  minW: item.minW,
-                  minH: item.minH,
-                }}
-                style={Panel}
-              >
-                <span className="text">{item.text}</span>
-              </div>
-            );
-          })}
-        </ResponsiveReactGridLayout>
+
+        <div style={right_component}>
+          <ResponsiveReactGridLayout
+            // breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
+            // cols={{ lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }}
+            className="layout"
+            rowHeight={50}
+            layouts={this.state.layouts}
+            onLayoutChange={(layout, layouts) =>
+              this.onLayoutChange(layout, layouts)
+            }
+            style={grid}
+          >
+            {this.state.data.map((item) => {
+              return (
+                <div
+                  key={item.index}
+                  data-grid={{
+                    w: item.w,
+                    h: item.h,
+                    x: item.x,
+                    y: item.y,
+                    minW: item.minW,
+                    minH: item.minH,
+                    maxW: 12,
+                    maxH: 12,
+                  }}
+                  style={Panel}
+                >
+                  <span className="text">{item.text}</span>
+                </div>
+              );
+            })}
+          </ResponsiveReactGridLayout>
+        </div>
       </div>
     );
   }
@@ -148,6 +141,7 @@ function saveToLS(key, value) {
 
 const right_component = {
   height: "100vh",
+  border: "3px solid gray",
 };
 
 const grid = {
@@ -162,8 +156,6 @@ const Panel = {
   margin: "10px",
   borderRadius: "10px",
   background: "#B0C4DE",
-  padding: "0.2em 0.5em",
-  display: "inline-block",
   border: "solid 3px #B0C4DE",
   boxShadow: "3px 3px 3px rgba(0, 0, 0, 0.32)",
 };
