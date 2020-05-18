@@ -10,17 +10,13 @@ import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import Grid from "@material-ui/core/Grid";
+import Paper from "@material-ui/core/Paper";
 import SplitPane, { Pane } from "react-split-pane";
 
 export default class App extends React.Component {
   constructor() {
     super();
     this.toggleBtmHeight = this.toggleBtmHeight.bind(this);
-  }
-  componentWillMount() {
-    this.setState({
-      btmHeight: "",
-    });
   }
   toggleBtmHeight(newSize) {
     this.setState({ btmHeight: newSize + "px" });

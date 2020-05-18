@@ -23,14 +23,48 @@ export default class RightComponent extends React.Component {
 
     this.state = {
       layouts: JSON.parse(JSON.stringify(originalLayouts)),
-    };
-  }
-
-  static get defaultProps() {
-    return {
-      className: "layout",
-      cols: { lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 },
-      rowHeight: 30,
+      data: [
+        {
+          index: "1",
+          text: "aaaaa",
+          w: 2,
+          h: 3,
+          x: 0,
+          y: 0,
+          minW: 2,
+          minH: 3,
+        },
+        {
+          index: "2",
+          text: "bbbbb",
+          w: 2,
+          h: 3,
+          x: 2,
+          y: 0,
+          minW: 2,
+          minH: 3,
+        },
+        {
+          index: "3",
+          text: "ccccc",
+          w: 2,
+          h: 3,
+          x: 4,
+          y: 0,
+          minW: 2,
+          minH: 3,
+        },
+        {
+          index: "4",
+          text: "ddddd",
+          w: 2,
+          h: 3,
+          x: 6,
+          y: 0,
+          minW: 2,
+          minH: 3,
+        },
+      ],
     };
   }
 
@@ -65,41 +99,24 @@ export default class RightComponent extends React.Component {
           }
           style={grid}
         >
-          <div
-            key="1"
-            data-grid={{ w: 2, h: 3, x: 0, y: 0, minW: 2, minH: 3 }}
-            style={panel}
-          >
-            <span className="text">aaaaaaaaaaaa</span>
-          </div>
-          <div
-            key="2"
-            data-grid={{ w: 2, h: 3, x: 2, y: 0, minW: 2, minH: 3 }}
-            style={panel}
-          >
-            <span className="text">bbbbbbbbbbbb</span>
-          </div>
-          <div
-            key="3"
-            data-grid={{ w: 2, h: 3, x: 4, y: 0, minW: 2, minH: 3 }}
-            style={panel}
-          >
-            <span className="text">cccccccccccccc</span>
-          </div>
-          <div
-            key="4"
-            data-grid={{ w: 2, h: 3, x: 6, y: 0, minW: 2, minH: 3 }}
-            style={panel}
-          >
-            <span className="text">dddddddddddd</span>
-          </div>
-          <div
-            key="5"
-            data-grid={{ w: 2, h: 3, x: 8, y: 0, minW: 2, minH: 3 }}
-            style={panel}
-          >
-            <span className="text">eeeeeeeeeeee</span>
-          </div>
+          {this.state.data.map((item) => {
+            return (
+              <div
+                key={item.index}
+                data-grid={{
+                  w: item.w,
+                  h: item.h,
+                  x: item.x,
+                  y: item.y,
+                  minW: item.minW,
+                  minH: item.minH,
+                }}
+                style={Panel}
+              >
+                <span className="text">{item.text}</span>
+              </div>
+            );
+          })}
         </ResponsiveReactGridLayout>
       </div>
     );
@@ -138,11 +155,11 @@ const grid = {
   // justifyContent: "flex-start",
 };
 
-const panel = {
-  width: "100%",
+const Panel = {
+  // width: "100%",
   color: "#fff",
   fontWeight: "bold",
-  marginBottom: "10px",
+  margin: "10px",
   borderRadius: "10px",
   background: "#B0C4DE",
   padding: "0.2em 0.5em",
